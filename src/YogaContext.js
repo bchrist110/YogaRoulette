@@ -1,7 +1,10 @@
 import React from 'react';
 
 const YogaContext = React.createContext({
-    randomStanding: []
+    standing: [],
+    sitting: [],
+    randomStanding: [],
+    randomSitting: []
 })
 
 export default YogaContext

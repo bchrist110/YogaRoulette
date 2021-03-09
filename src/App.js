@@ -4,7 +4,6 @@ import './App.css';
 import Nav from './Nav';
 import StartForm from './StartForm';
 import Timer from './Timer'
-import dummyinfo from './dummyinfo'
 import YogaContext from './YogaContext';
 
 function myRandomInts(quantity, max){
@@ -20,14 +19,59 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = { 
-        randomStanding: myRandomInts(5, dummyinfo.standing.length)
-        // randomStanding: myRandomInts(1, dummyinfo.sitting.length)
+        sitting: [],
+        standing: [],
+        randomStanding: myRandomInts(30, 30),
+        randomSitting: myRandomInts(30, 30)
     };
-}
+  }
+
+  setStanding = standing => {
+    this.setState({
+      standing,
+      error: null
+    })
+  }
+
+  setSitting = sitting => {
+    this.setState({
+      sitting,
+      error: null
+    })
+  }
+
+  componentDidMount() {
+    fetch('https://frozen-wave-08668.herokuapp.com/api/standing/', {
+      method: 'GET',
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status)
+        }
+        return res.json()
+      })
+      .then(this.setStanding)
+      .catch(error => this.setState({ error }))
+
+      fetch('https://frozen-wave-08668.herokuapp.com/api/sitting/', {
+      method: 'GET',
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status)
+        }
+        return res.json()
+      })
+      .then(this.setSitting)
+      .catch(error => this.setState({ error }))
+    }
+
   render() {
-    console.log(this.state.randomStanding)
     const contextValue = {
-      randomStanding: this.state.randomStanding
+      randomStanding: this.state.randomStanding,
+      randomSitting: this.state.randomSitting,
+      standing: this.state.standing,
+      sitting: this.state.sitting
     }
     return (
       <YogaContext.Provider value={contextValue}>

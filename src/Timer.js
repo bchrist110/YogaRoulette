@@ -1,5 +1,4 @@
 import React from 'react';
-import dummyinfo from './dummyinfo';
 import YogaContext from './YogaContext';
 
 class Timer extends React.Component {
@@ -8,9 +7,8 @@ class Timer extends React.Component {
     constructor(props) {
         super(props)
         this.state = { 
-            count: 60,
-            round: 1,
-            currentPoses: "standing"
+            count: 5,
+            round: 1
         };
     }
 
@@ -24,7 +22,7 @@ class Timer extends React.Component {
 
     restartInterval = () => {
         this.setState({
-            count: 60,
+            count: 5,
             round: this.state.round + 1
         })
         this.interval = setInterval(() => {
@@ -33,41 +31,47 @@ class Timer extends React.Component {
             })
         }, 1000)
     }
-
-    changePosition = () => {
-        this.setState({
-            currentPoses: "sitting"
-        })
-    }
     
     render() {
         const standingOrder = this.context.randomStanding
-        const { round, count, currentPoses } = this.state
+        const sittingOrder = this.context.randomSitting
+        const { round, count } = this.state
         const length = this.props.match.params.practicelength
-        if (this.state.round === length + 1) {
+        if (round === parseInt(length) + 1) {
             return (
                 <div>
                     Completed!
                 </div>
             )
         }
+        const standingPoses = [...this.context.standing]
+        const sittingPoses = [...this.context.sitting]
+        let currentPoses;
+        let orderList;
+        
+        if (round <= length/2) {
+            currentPoses = standingPoses;
+            orderList = standingOrder;
+        }
         if (round > length/2) {
-            this.changePosition()
+            currentPoses = sittingPoses
+            orderList = sittingOrder
         }
         if (this.state.count === 0) {
             clearInterval(this.interval);
             this.restartInterval()
         }
-        let images = dummyinfo[currentPoses][standingOrder[round-1]].images
+
         return (
             <div>
-                <h2>Pose Name: {dummyinfo[currentPoses][standingOrder[round-1]].name}</h2>
+                <h2>Pose Name: {currentPoses[orderList[round-1]-1].name}</h2>
                 <h3>Pose Number: {round}</h3>
-                <h3>Notes: {dummyinfo[currentPoses][standingOrder[round-1]].notes}</h3>
+                <h3>Notes: {currentPoses[orderList[round-1]-1].notes}</h3>
                 <h2>Timer: {count}</h2>
-                {dummyinfo[currentPoses][standingOrder[round-1]].images.map(currImage =>
-                    <img src={currImage} alt={dummyinfo[currentPoses][standingOrder[round-1]].name} />
-                )}
+                <img src={currentPoses[orderList[round-1]-1].img1} alt={currentPoses[orderList[round-1]-1].name} />
+                <img src={currentPoses[orderList[round-1]-1].img2} alt={currentPoses[orderList[round-1]-1].name} />
+                <img src={currentPoses[orderList[round-1]-1].img3} alt={currentPoses[orderList[round-1]-1].name} />
+
             </div>
         )
     }

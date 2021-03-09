@@ -17,18 +17,7 @@ export default class StartForm extends Component {
                 <Link to='/practice/30'>
                     30 Minutes
                 </Link>
-                <br />
-                <Link to='/practice/40'>
-                    40 Minutes
-                </Link>
-                <br />
-                <Link to='/practice/50'>
-                    50 Minutes
-                </Link>
-                <br />
-                <Link to='/practice/60'>
-                    60 Minutes
-                </Link>
+                
             </div>
         )
     }
