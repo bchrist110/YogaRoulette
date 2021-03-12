@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './StartForm.css'
 
 export default class StartForm extends Component {
     render() {

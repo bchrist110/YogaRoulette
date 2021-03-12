@@ -1,5 +1,6 @@
 import React from 'react';
 import YogaContext from './YogaContext';
+import './Timer.css';
 
 class Timer extends React.Component {
     static contextType = YogaContext
@@ -7,7 +8,7 @@ class Timer extends React.Component {
     constructor(props) {
         super(props)
         this.state = { 
-            count: 5,
+            count: 60,
             round: 1
         };
     }
@@ -22,7 +23,7 @@ class Timer extends React.Component {
 
     restartInterval = () => {
         this.setState({
-            count: 5,
+            count: 60,
             round: this.state.round + 1
         })
         this.interval = setInterval(() => {
@@ -39,9 +40,9 @@ class Timer extends React.Component {
         const length = this.props.match.params.practicelength
         if (round === parseInt(length) + 1) {
             return (
-                <div>
+                <h1>
                     Completed!
-                </div>
+                </h1>
             )
         }
         const standingPoses = [...this.context.standing]
@@ -64,14 +65,14 @@ class Timer extends React.Component {
 
         return (
             <div>
-                <h2>Pose Name: {currentPoses[orderList[round-1]-1].name}</h2>
-                <h3>Pose Number: {round}</h3>
-                <h3>Notes: {currentPoses[orderList[round-1]-1].notes}</h3>
-                <h2>Timer: {count}</h2>
-                <img src={currentPoses[orderList[round-1]-1].img1} alt={currentPoses[orderList[round-1]-1].name} />
-                <img src={currentPoses[orderList[round-1]-1].img2} alt={currentPoses[orderList[round-1]-1].name} />
-                <img src={currentPoses[orderList[round-1]-1].img3} alt={currentPoses[orderList[round-1]-1].name} />
-
+                <h2 className="name">Pose Name: {currentPoses[orderList[round-1]-1].name}</h2>
+                <h3 className="number">Pose Number: {round}</h3>
+                <h3 className="notes">Notes: {currentPoses[orderList[round-1]-1].notes}</h3>
+                <h2 className="timer">Timer: {count}</h2>
+                <div className="group">
+                    <img src={currentPoses[orderList[round-1]-1].img1} alt={currentPoses[orderList[round-1]-1].name} className="item"/>
+                    <img src={currentPoses[orderList[round-1]-1].img2} alt={currentPoses[orderList[round-1]-1].name} className="item"/>
+                </div>
             </div>
         )
     }

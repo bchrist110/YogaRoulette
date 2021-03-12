@@ -1,0 +1,59 @@
+.group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom:100px;
+}
+
+.item {
+    flex: 1;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px
+}
+
+img {
+    width: 300px;
+    border: 5px solid #555;
+    height: 300px;
+}
+
+.name {
+    text-align: center;
+    font-family: cursive;
+}
+
+.number {
+    text-align: center;
+    font-family: cursive;
+}
+
+.notes {
+    text-align: center;
+    font-family: cursive;
+}
+
+.timer {
+    text-align: center;
+    font-family: cursive;
+}
+
+@media all and (min-width: 800px) {
+    .group {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom:100px;
+    }
+    
+    .item {
+        flex: 1;
+        margin: 40px;
+    }
+    
+    img {
+        width: 300px;
+        border: 5px solid #555;
+        height: 300px;
+    }
+}
