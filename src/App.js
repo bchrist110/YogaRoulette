@@ -5,6 +5,7 @@ import Nav from './Nav';
 import StartForm from './StartForm';
 import Timer from './Timer'
 import YogaContext from './YogaContext';
+const { API_URL }= process.env
 
 function myRandomInts(quantity, max){
   const arr = []
@@ -41,7 +42,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://frozen-wave-08668.herokuapp.com/api/standing/', {
+    fetch(API_URL + 'standing/', {
       method: 'GET',
     })
       .then(res => {
@@ -53,7 +54,7 @@ class App extends React.Component {
       .then(this.setStanding)
       .catch(error => this.setState({ error }))
 
-      fetch('https://frozen-wave-08668.herokuapp.com/api/sitting/', {
+      fetch(API_URL + 'sitting/', {
       method: 'GET',
     })
       .then(res => {
