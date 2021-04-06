@@ -1,6 +1,7 @@
 import React from 'react';
 import YogaContext from './YogaContext';
 import './Timer.css';
+const API_URL = process.env.REACT_APP_API_URL
 
 class Timer extends React.Component {
     static contextType = YogaContext
@@ -32,6 +33,46 @@ class Timer extends React.Component {
             })
         }, 1000)
     }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        let ordersitting = this.context.randomSitting.join(" ")
+        let orderstanding = this.context.randomStanding.join(" ")
+        const fiveData = { 'ordersitting': ordersitting, 'orderstanding': orderstanding }
+        fetch(API_URL + 'lastfive/', {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(fiveData)
+        })
+            .then(res => {
+            if (!res.ok) {
+                // get the error message from the response,
+                return res.json().then(error => {
+                // then throw it
+                throw error
+                })
+            }
+            return res.json()
+            })
+            .then(this.context.setUpdatedLast(fiveData))
+            .then(this.props.history.push('/'))
+            .catch(error => {
+                console.error(error)
+            })
+    }
+
+    componentDidUpdate() {
+        if (this.state.count === 0) {
+            clearInterval(this.interval);
+            this.restartInterval()
+        }
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
     
     render() {
         const standingOrder = this.context.randomStanding
@@ -40,9 +81,15 @@ class Timer extends React.Component {
         const length = this.props.match.params.practicelength
         if (round === parseInt(length) + 1) {
             return (
-                <h1>
-                    Completed!
-                </h1>
+                <form onSubmit={this.handleSubmit}>
+                    <h1>
+                        Completed!
+                    </h1>
+                    <h2>
+                        If You Liked the Practice, Hit the Like Button Below, and It Will Be Displayed on the Page!
+                    </h2>
+                    <button type='submit'>Like</button>
+                </form>
             )
         }
         const standingPoses = [...this.context.standing]
@@ -57,10 +104,6 @@ class Timer extends React.Component {
         if (round > length/2) {
             currentPoses = sittingPoses
             orderList = sittingOrder
-        }
-        if (this.state.count === 0) {
-            clearInterval(this.interval);
-            this.restartInterval()
         }
 
         return (

@@ -4,7 +4,12 @@ const YogaContext = React.createContext({
     standing: [],
     sitting: [],
     randomStanding: [],
-    randomSitting: []
+    randomSitting: [],
+    last: [],
+    setRStanding:() => {},
+    setRSitting: () => {},
+    setRandoms: () => {},
+    setUpdatedLast: () => {}
 })
 
 export default YogaContext
