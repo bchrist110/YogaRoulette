@@ -10,10 +10,7 @@ Uses 3 Get Requests and One Post Request to Save Liked Practices to Database
 
 ### Summary
 
--Yoga Roulette is a random yoga practice generator
--You can either select a random practice or a recently liked workout
--Practice can either be 10, 20, or 30 minutes
--Practice will be half standing poses and half sitting poses
+-Yoga Roulette is a random yoga practice generator. You can either select a random practice or a recently liked practice. The practice can either be 10, 20, or 30 minutes. The practice will be half standing poses and half sitting poses.
 
 ### Technologies Used
 
