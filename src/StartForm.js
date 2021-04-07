@@ -9,6 +9,8 @@ export default class StartForm extends Component {
     render() {
         return (
             <div>
+                <h2>Yoga Roulette is a Randomly Generated Yoga Workout</h2>
+                <h3>Half of the Workout is Standing Poses, While the Other Half is Sitting Poses</h3>
                 <h2>Either Choose a Randomly Selected Practice...</h2>
                 <h3>Select Length of Practice:</h3>
                 <Link to='/practice/10' onClick={this.context.setRandoms}>

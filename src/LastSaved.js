@@ -6,7 +6,7 @@ export default class LastSaved extends Component {
     static contextType = YogaContext
 
     componentDidMount() {
-        const practiceNum = this.props.match.params.savednumber
+        const practiceNum = parseInt(this.props.match.params.savednumber)
         const sittingOrder = this.context.last.slice(practiceNum * -1)[0].ordersitting.split(" ")
         const standingOrder = this.context.last.slice(practiceNum * -1)[0].orderstanding.split(" ")
         let standingArr = []
