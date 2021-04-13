@@ -75,6 +75,11 @@ class Timer extends React.Component {
     }
     
     render() {
+        if (!this.context.last.length|| !this.context.sitting.length || !this.context.standing.length || !this.context.randomStanding.length || !this.context.randomSitting.length) {
+            return (
+                <div>Please Click On Home Button Above</div>
+            )
+        }
         const standingOrder = this.context.randomStanding
         const sittingOrder = this.context.randomSitting
         const { round, count } = this.state
@@ -94,7 +99,7 @@ class Timer extends React.Component {
         }
         const standingPoses = [...this.context.standing]
         const sittingPoses = [...this.context.sitting]
-        let currentPoses;
+        let currentPoses = [];
         let orderList;
         
         if (round <= length/2) {

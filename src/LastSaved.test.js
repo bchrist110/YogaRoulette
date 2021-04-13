@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LastSaved from './LastSaved';
 import StartForm from './StartForm';
 import { BrowserRouter } from "react-router-dom";
 
