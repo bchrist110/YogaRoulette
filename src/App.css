@@ -4,5 +4,25 @@ header {
 }
 
 body {
-  background-image: url('https://cdn.hipwallpaper.com/i/30/15/s8RSNu.jpg');
+  background-image: url('../background.jpg');
+}
+
+.decorative-box {
+  border: 2px solid #000000; /* Black border */
+  border-radius: 15px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background color */
+  padding: 20px; /* Inner spacing */
+  margin: 20px; /* Outer spacing */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  text-align: center; /* Center align the content */
+}
+
+/* Styling for h1 element inside the box */
+.decorative-box h1 {
+  font-family: 'Playfair Display', serif; /* Fancy font */
+  font-size: 3rem; /* Font size */
+  color: #000000; /* Black color */
+  text-transform: uppercase; /* Uppercase text */
+  letter-spacing: 2px; /* Spacing between letters */
+  margin: 0; /* Remove default margin */
 }

@@ -138,7 +138,9 @@ class App extends React.Component {
           <Nav />
         </nav>
         <header>
-          <h1>Yoga Roulette</h1>
+          <div class="decorative-box">
+              <h1>Yoga Roulette</h1>
+          </div>
         </header>
         <main>
           <Route exact path='/' component={StartForm} />

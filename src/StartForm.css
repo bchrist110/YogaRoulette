@@ -7,24 +7,87 @@ br {
 }
 
 a:link {
-    color: blue;
-    text-decoration: none;
+    position: relative;               /* Positioning for the pseudo-elements */
+    color: #3498db;                  /* Base link color */
+    text-decoration: none;           /* Remove default underline */
+    font-size: 20px;                 /* Font size */
+    font-weight: bold;               /* Bold text */
+    transition: color 0.3s ease;     /* Smooth color transition */
+    padding: 5px 10px;               /* Padding around the link */
+    border-radius: 5px;              /* Rounded corners */
+    display: inline-block;            /* Allows padding and hover effects */
 }
-  
-  /* visited link */
-a:visited {
-    color: purple;
-    text-decoration: none;
-}
-  
-  /* mouse over link */
-a:hover {
-    color: hotpink;
-    text-decoration: none;
-}
-  
 
-a:active {
-    color: red;
-    text-decoration: none;
+  a::before, a::after {
+    content: '';                     /* Pseudo-elements require content */
+    position: absolute;              /* Position them relative to the link */
+    height: 2px;                     /* Thickness of the underline */
+    background: #3498db;            /* Underline color */
+    transition: width 0.3s ease;    /* Smooth width transition */
+  }
+  
+  a::before {
+    width: 0;                       /* Initially hidden */
+    bottom: 0;                      /* Position at the bottom */
+    left: 50%;                      /* Centered */
+    transform: translateX(-50%);   /* Adjust to center */
+  }
+  
+  a::after {
+    width: 0;                       /* Initially hidden */
+    top: 0;                         /* Position at the top */
+    right: 50%;                     /* Centered */
+    transform: translateX(50%);     /* Adjust to center */
+  }
+  
+  a:hover {
+    color: #2980b9;                 /* Darker shade on hover */
+  }
+  
+  a:hover::before, a:hover::after {
+    width: 100%;                   /* Show the underline on hover */
+  }
+
+
+/* Fancy styling for h2 elements */
+h2 {
+    font-family: 'Poppins', sans-serif; /* Use the fancy font */
+    font-size: 2rem; /* Adjust font size */
+    color: #000000; /* Black color */
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 1px; /* Space between letters */
+    margin: 20px 0; /* Margin for spacing */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+    transition: color 0.3s ease, transform 0.3s ease; /* Transition for color and transform */
 }
+
+
+
+/* Fancy styling for h3 elements */
+h3 {
+    font-family: 'Poppins', sans-serif; /* Use the fancy font */
+    font-size: 1rem; /* Adjust font size */
+    color: #000000; /* Black color */
+    text-transform: capitalize; /* Capitalize first letter of each word */
+    letter-spacing: 0.5px; /* Space between letters */
+    margin: 15px 0; /* Margin for spacing */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+    transition: color 0.3s ease, transform 0.3s ease; /* Transition for color and transform */
+}
+
+h1 {
+    font-family: 'Playfair Display', serif; /* Use the fancy font */
+    font-size: 4rem; /* Adjust font size */
+    color: #000000; /* Black color */
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 2px; /* Space between letters */
+    margin: 30px 0; /* Margin for spacing */
+    text-align: center; /* Center align the text */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+    transition: transform 0.3s ease; /* Transition for transform effect */
+}
+
+h1:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
